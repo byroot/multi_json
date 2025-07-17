@@ -49,7 +49,11 @@ module MultiJson
       end
 
       def options_without_adapter(options)
-        options[:adapter] ? options.except(:adapter) : options
+        if options[:adapter]
+          options = options.dup
+          options.delete(:adapter)
+        end
+        options
       end
     end
   end

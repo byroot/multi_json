@@ -222,11 +222,29 @@ module MultiJson
       end
     end
 
-    def nulltok(s) = (s[0, 4] == "null") ? [:val, "null", nil] : []
+    def nulltok(s)
+      if s[0, 4] == "null"
+        [:val, "null", nil]
+      else
+        []
+      end
+    end
 
-    def truetok(s) = (s[0, 4] == "true") ? [:val, "true", true] : []
+    def truetok(s)
+      if s[0, 4] == "true"
+        [:val, "true", true]
+      else
+        []
+      end
+    end
 
-    def falsetok(s) = (s[0, 5] == "false") ? [:val, "false", false] : []
+    def falsetok(s)
+      if s[0, 5] == "false"
+        [:val, "false", false]
+      else
+        []
+      end
+    end
 
     def numtok(s)
       m = /(-?(?:[1-9][0-9]+|[0-9]))([.][0-9]+)?([eE][+-]?[0-9]+)?/.match(s)
